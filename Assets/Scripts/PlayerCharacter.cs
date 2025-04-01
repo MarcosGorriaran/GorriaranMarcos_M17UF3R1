@@ -93,7 +93,12 @@ public class PlayerCharacter : Character, PlayerControls.IPlayerActions
     private void ExecuteChangeOnMovement(Vector2 normalizedAxis)
     {
         StopMovement();
-        _moveCoroutine = StartCoroutine(ConstantMovement(normalizedAxis));
+        float forward = normalizedAxis.y;
+        float right = normalizedAxis.x;
+        Transform camera = Camera.main.transform;
+        Vector2 forwardDirMov = camera.forward * forward;
+        Vector2 rightDirMov = camera.up * right;
+        _moveCoroutine = StartCoroutine(ConstantMovement(forwardDirMov + rightDirMov));
     }
     private void StartAutoFire()
     {
@@ -121,7 +126,7 @@ public class PlayerCharacter : Character, PlayerControls.IPlayerActions
     {
         while (true)
         {
-            _playerBody.velocity = new Vector3(normalizedAxis.y, 0, normalizedAxis.x)*_speed;
+            _playerBody.velocity = new Vector3(normalizedAxis.x, 0, normalizedAxis.y)*_speed;
             yield return null;
         }
     }
