@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf7b3c091c3ba624a9a9786cd3a2691f, type: 3}
+  m_Name: ShortPewPew
+  m_EditorClassIdentifier: 
+  _rateOfFire: 200
+  _bulletPrefab: {fileID: -4781045779792588402, guid: 411e75fb94fb4e944a5248762df66786, type: 3}
