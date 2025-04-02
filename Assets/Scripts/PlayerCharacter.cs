@@ -29,7 +29,7 @@ public class PlayerCharacter : Character, PlayerControls.IPlayerActions
         {
             Vector2 mousePos = context.ReadValue<Vector2>();
             Camera cam = Camera.main;
-            Ray camRay = cam.ScreenPointToRay(mousePos);
+            Ray camRay = cam.ViewportPointToRay(new Vector2(0.5f,0.5f));
             if (Physics.Raycast(camRay, out RaycastHit hit, Mathf.Infinity))
             {
                 Weapon.transform.LookAt(hit.point);
@@ -96,8 +96,8 @@ public class PlayerCharacter : Character, PlayerControls.IPlayerActions
         float forward = normalizedAxis.y;
         float right = normalizedAxis.x;
         Transform camera = Camera.main.transform;
-        Vector2 forwardDirMov = camera.forward * forward;
-        Vector2 rightDirMov = camera.up * right;
+        Vector3 forwardDirMov = camera.forward * forward;
+        Vector3 rightDirMov = camera.right * right;
         _moveCoroutine = StartCoroutine(ConstantMovement(forwardDirMov + rightDirMov));
     }
     private void StartAutoFire()
@@ -122,11 +122,11 @@ public class PlayerCharacter : Character, PlayerControls.IPlayerActions
             _shootCoroutine = null;
         }
     }
-    private IEnumerator ConstantMovement(Vector2 normalizedAxis)
+    private IEnumerator ConstantMovement(Vector3 normalizedAxis)
     {
         while (true)
         {
-            _playerBody.velocity = new Vector3(normalizedAxis.x, 0, normalizedAxis.y)*_speed;
+            _playerBody.velocity = normalizedAxis*_speed;
             yield return null;
         }
     }
