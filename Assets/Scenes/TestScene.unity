@@ -855,7 +855,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 651245867}
-  - component: {fileID: 651245868}
   m_Layer: 0
   m_Name: CameraJoint
   m_TagString: Untagged
@@ -879,27 +878,6 @@ Transform:
   - {fileID: 963194228}
   m_Father: {fileID: 1426278355}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &651245868
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 651245866}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 64
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.8499718, y: 0.55454206, z: 2.7517986}
-  m_Center: {x: -0.4249859, y: 0.699249, z: -0.8758993}
 --- !u!1 &690293599
 GameObject:
   m_ObjectHideFlags: 0
