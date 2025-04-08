@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerInput))]
 public class PlayerCharacter : Character, PlayerControls.IPlayerActions
 {
+    const float MinCamRotation = -89f;
+    const float MaxCamRotation = 89f;
     Rigidbody _playerBody;
     [SerializeField]
     float _speed;
@@ -17,6 +19,8 @@ public class PlayerCharacter : Character, PlayerControls.IPlayerActions
     string _sceneOnDeath;
     [SerializeField]
     Transform cameraPivot;
+    [SerializeField]
+    Transform _movementPivot;
     Coroutine _moveCoroutine;
     Coroutine _shootCoroutine;
     protected override void Awake()
@@ -31,7 +35,16 @@ public class PlayerCharacter : Character, PlayerControls.IPlayerActions
         {
             Vector2 mousePos = context.ReadValue<Vector2>();
             Camera cam = cameraPivot.GetComponentInChildren<Camera>();
-            cameraPivot.transform.eulerAngles += new Vector3(-mousePos.y, mousePos.x, 0)*0.2f;
+            cameraPivot.Rotate(new Vector3(-mousePos.y, mousePos.x, 0));
+            cameraPivot.transform.eulerAngles = new Vector3(Mathf.Clamp(cameraPivot.rotation.eulerAngles.x,-40f,40f), cameraPivot.rotation.eulerAngles.y, 0);
+            if (Physics.Raycast(new Ray(cam.transform.position, cam.transform.forward),out RaycastHit hit))
+            {
+                Weapon.transform.LookAt(hit.point);
+            }
+            else
+            {
+                Weapon.transform.rotation = cam.transform.rotation;
+            }
         }
             
     }
@@ -89,12 +102,8 @@ public class PlayerCharacter : Character, PlayerControls.IPlayerActions
     private void ExecuteChangeOnMovement(Vector2 normalizedAxis)
     {
         StopMovement();
-        float forward = normalizedAxis.y;
-        float right = normalizedAxis.x;
-        Transform camera = Camera.main.transform;
-        Vector3 forwardDirMov = camera.forward * forward;
-        Vector3 rightDirMov = camera.right * right;
-        _moveCoroutine = StartCoroutine(ConstantMovement(forwardDirMov + rightDirMov));
+        
+        _moveCoroutine = StartCoroutine(ConstantMovement(normalizedAxis));
     }
     private void StartAutoFire()
     {
@@ -118,11 +127,26 @@ public class PlayerCharacter : Character, PlayerControls.IPlayerActions
             _shootCoroutine = null;
         }
     }
-    private IEnumerator ConstantMovement(Vector3 normalizedAxis)
+    private IEnumerator ConstantMovement(Vector2 normalizedAxis)
     {
         while (true)
         {
-            _playerBody.velocity = normalizedAxis*_speed;
+            float forward = normalizedAxis.y;
+            float right = normalizedAxis.x;
+            Vector3 forwardDirMov = _movementPivot.forward * forward;
+            Vector3 rightDirMov = _movementPivot.right * right;
+            Vector3 dirMov = forwardDirMov + rightDirMov;
+            _playerBody.velocity = (dirMov)*_speed;
+
+            Camera cam = cameraPivot.GetComponentInChildren<Camera>();
+            if (Physics.Raycast(new Ray(cam.transform.position, cam.transform.forward), out RaycastHit hit))
+            {
+                Weapon.transform.LookAt(hit.point);
+            }
+            else
+            {
+                Weapon.transform.rotation = cam.transform.rotation;
+            }
             yield return null;
         }
     }
