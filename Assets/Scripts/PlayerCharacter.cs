@@ -15,6 +15,8 @@ public class PlayerCharacter : Character, PlayerControls.IPlayerActions
     ChangeScene _sceneManager;
     [SerializeField]
     string _sceneOnDeath;
+    [SerializeField]
+    Transform cameraPivot;
     Coroutine _moveCoroutine;
     Coroutine _shootCoroutine;
     protected override void Awake()
@@ -28,14 +30,8 @@ public class PlayerCharacter : Character, PlayerControls.IPlayerActions
         if (Time.timeScale != 0)
         {
             Vector2 mousePos = context.ReadValue<Vector2>();
-            Camera cam = Camera.main;
-            Ray camRay = cam.ViewportPointToRay(new Vector2(0.5f,0.5f));
-            if (Physics.Raycast(camRay, out RaycastHit hit, Mathf.Infinity))
-            {
-                Weapon.transform.LookAt(hit.point);
-                Vector3 euler = Weapon.transform.rotation.eulerAngles;
-                Weapon.transform.rotation = Quaternion.Euler(0, euler.y, euler.z);
-            }
+            Camera cam = cameraPivot.GetComponentInChildren<Camera>();
+            cameraPivot.transform.eulerAngles += new Vector3(-mousePos.y, mousePos.x, 0)*0.2f;
         }
             
     }

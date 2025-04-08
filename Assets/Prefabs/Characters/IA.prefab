@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 426841487441064803}
   - component: {fileID: 932283806087919393}
   - component: {fileID: 4064302764901167438}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: IA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -242,7 +242,7 @@ GameObject:
   - component: {fileID: 3274915197726254356}
   - component: {fileID: 2956055046670200127}
   - component: {fileID: 738053695332412282}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GunMuzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -326,7 +326,7 @@ GameObject:
   - component: {fileID: 7858823485782392985}
   - component: {fileID: 7635569864384962237}
   - component: {fileID: 6636419448065066241}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: InWorldDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -428,7 +428,7 @@ GameObject:
   - component: {fileID: 6825513279682067575}
   - component: {fileID: 4551369421049217268}
   - component: {fileID: 6438152337758796968}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -516,7 +516,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2115073277163012677}
   - component: {fileID: 3433519217008185136}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -564,7 +564,7 @@ GameObject:
   - component: {fileID: 2136111872265152037}
   - component: {fileID: 8650138857283977291}
   - component: {fileID: 7843796576384182813}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -667,7 +667,7 @@ GameObject:
   - component: {fileID: 2943764963115774188}
   - component: {fileID: 1448643631328087408}
   - component: {fileID: 7026745715794610675}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
