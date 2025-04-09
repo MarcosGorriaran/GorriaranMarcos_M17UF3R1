@@ -1,4 +1,5 @@
 using System.Collections;
+using Autodesk.Fbx;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +12,8 @@ public class PlayerCharacter : Character, PlayerControls.IPlayerActions
     Rigidbody _playerBody;
     [SerializeField]
     float _speed;
+    [SerializeField]
+    float _jumpForce;
     [SerializeField]
     Canvas _pauseMenu;
     [SerializeField]
@@ -35,8 +38,14 @@ public class PlayerCharacter : Character, PlayerControls.IPlayerActions
         {
             Vector2 mousePos = context.ReadValue<Vector2>();
             Camera cam = cameraPivot.GetComponentInChildren<Camera>();
-            cameraPivot.Rotate(new Vector3(-mousePos.y, mousePos.x, 0));
-            cameraPivot.transform.eulerAngles = new Vector3(Mathf.Clamp(cameraPivot.rotation.eulerAngles.x,-40f,40f), cameraPivot.rotation.eulerAngles.y, 0);
+            Vector3 actualRotation = cameraPivot.eulerAngles;
+            float rotationX = -mousePos.y + actualRotation.x;
+            float rotationY = mousePos.x + actualRotation.y;
+            if (rotationX > 180)
+                rotationX -= 360f;
+            rotationX = Mathf.Clamp(rotationX,-40f,40f);
+            cameraPivot.localRotation = Quaternion.Euler(rotationX, 0f, 0f);
+            transform.localRotation = Quaternion.Euler(0f, rotationY, 0f);
             if (Physics.Raycast(new Ray(cam.transform.position, cam.transform.forward),out RaycastHit hit))
             {
                 Weapon.transform.LookAt(hit.point);
@@ -99,6 +108,16 @@ public class PlayerCharacter : Character, PlayerControls.IPlayerActions
         }
         
     }
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        if(Time.timeScale != 0)
+        {
+            if (context.performed)
+            {
+                _playerBody.velocity = new Vector3(_playerBody.velocity.x, _jumpForce, _playerBody.velocity.z);
+            }
+        }
+    }
     private void ExecuteChangeOnMovement(Vector2 normalizedAxis)
     {
         StopMovement();
@@ -136,7 +155,9 @@ public class PlayerCharacter : Character, PlayerControls.IPlayerActions
             Vector3 forwardDirMov = _movementPivot.forward * forward;
             Vector3 rightDirMov = _movementPivot.right * right;
             Vector3 dirMov = forwardDirMov + rightDirMov;
-            _playerBody.velocity = (dirMov)*_speed;
+            _playerBody.velocity = new Vector3(dirMov.x,_playerBody.velocity.y,dirMov.z);
+
+            
 
             Camera cam = cameraPivot.GetComponentInChildren<Camera>();
             if (Physics.Raycast(new Ray(cam.transform.position, cam.transform.forward), out RaycastHit hit))
@@ -172,4 +193,6 @@ public class PlayerCharacter : Character, PlayerControls.IPlayerActions
     {
         
     }
+
+    
 }
