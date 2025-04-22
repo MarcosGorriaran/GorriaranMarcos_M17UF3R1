@@ -135,7 +135,7 @@ public class PlayerCharacter : Character, PlayerControls.IPlayerActions
         {
             StopCoroutine(_moveCoroutine);
             _moveCoroutine = null;
-            _playerBody.velocity = Vector3.zero;
+            _playerBody.velocity = new Vector3(0,_playerBody.velocity.y,0);
         }
     } 
     private void StopFire()
