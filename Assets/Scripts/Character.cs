@@ -13,8 +13,11 @@ public abstract class Character : MonoBehaviour, ITargetable
     float _threatLevel;
     [SerializeField]
     Weapon _charWeapon;
+    [SerializeField]
+    AnimatorMovementHandler _animMovementHandler;
     public Group GroupMember { get => _groupMember; set => _groupMember = value; }
     public float ThreatLevel { get => _threatLevel; set => _threatLevel = value; }
+    public AnimatorMovementHandler AnimatorMovementHandler { get => _animMovementHandler; }
     public HPManager HitPointsManager
     {
         get

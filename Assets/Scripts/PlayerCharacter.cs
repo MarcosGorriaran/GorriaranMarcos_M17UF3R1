@@ -99,10 +99,29 @@ public class PlayerCharacter : Character, PlayerControls.IPlayerActions
         {
             if (context.performed)
             {
-                ExecuteChangeOnMovement(context.ReadValue<Vector2>().normalized);
+                Vector2 movDir = context.ReadValue<Vector2>();
+                float animX = movDir.x;
+                float animY = movDir.y;
+                if(animX > 0.5f)
+                {
+                    animX = 1;
+                }else if(animX < -0.5f)
+                {
+                    animX = -1;
+                }
+                if(animY > 0.5f)
+                {
+                    animY = 1;
+                }else if(animY < -0.5f)
+                {
+                    animY = -1;
+                }
+                ExecuteChangeOnMovement(movDir * _speed);
+                AnimatorMovementHandler.ChangeAnimationDir(animX, animY);
             }
             else if (context.canceled)
             {
+                AnimatorMovementHandler.ChangeAnimationDir(Vector2.zero);
                 StopMovement();
             }
         }
