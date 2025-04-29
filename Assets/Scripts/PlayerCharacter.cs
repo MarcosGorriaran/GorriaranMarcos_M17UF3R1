@@ -1,5 +1,6 @@
 using System.Collections;
 using Autodesk.Fbx;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,6 +11,9 @@ public class PlayerCharacter : Character, PlayerControls.IPlayerActions
     const float MinCamRotation = -89f;
     const float MaxCamRotation = 89f;
     Rigidbody _playerBody;
+    [SerializeField]
+    [Range(0f,90f)]
+    float _lookUpRange;
     [SerializeField]
     float _speed;
     [SerializeField]
@@ -24,6 +28,10 @@ public class PlayerCharacter : Character, PlayerControls.IPlayerActions
     Transform cameraPivot;
     [SerializeField]
     Transform _movementPivot;
+    [SerializeField]
+    CinemachineVirtualCamera _firstPersonCamera;
+    [SerializeField]
+    CinemachineVirtualCamera _thirdPersonCamera;
     Coroutine _moveCoroutine;
     Coroutine _shootCoroutine;
     protected override void Awake()
@@ -37,22 +45,22 @@ public class PlayerCharacter : Character, PlayerControls.IPlayerActions
         if (Time.timeScale != 0)
         {
             Vector2 mousePos = context.ReadValue<Vector2>();
-            Camera cam = cameraPivot.GetComponentInChildren<Camera>();
+            Transform cam = cameraPivot.GetComponentInChildren<CinemachineVirtualCamera>().transform;
             Vector3 actualRotation = cameraPivot.eulerAngles;
             float rotationX = -mousePos.y + actualRotation.x;
             float rotationY = mousePos.x + actualRotation.y;
             if (rotationX > 180)
                 rotationX -= 360f;
-            rotationX = Mathf.Clamp(rotationX,-40f,40f);
+            rotationX = Mathf.Clamp(rotationX,-_lookUpRange,_lookUpRange);
             cameraPivot.localRotation = Quaternion.Euler(rotationX, 0f, 0f);
             transform.localRotation = Quaternion.Euler(0f, rotationY, 0f);
-            if (Physics.Raycast(new Ray(cam.transform.position, cam.transform.forward),out RaycastHit hit))
+            if (Physics.Raycast(new Ray(cam.position, cam.forward),out RaycastHit hit))
             {
                 Weapon.transform.LookAt(hit.point);
             }
             else
             {
-                Weapon.transform.rotation = cam.transform.rotation;
+                Weapon.transform.rotation = cam.rotation;
             }
         }
             
@@ -137,6 +145,20 @@ public class PlayerCharacter : Character, PlayerControls.IPlayerActions
             }
         }
     }
+    public void OnAim(InputAction.CallbackContext context)
+    {
+        if(Time.timeScale != 0)
+        {
+            if (context.performed)
+            {
+                CameraManager.Instance.SetActiveCamera(_firstPersonCamera);
+            }
+            else if (context.canceled)
+            {
+                CameraManager.Instance.SetActiveCamera(_thirdPersonCamera);
+            }
+        }
+    }
     private void ExecuteChangeOnMovement(Vector2 normalizedAxis)
     {
         StopMovement();
@@ -176,10 +198,10 @@ public class PlayerCharacter : Character, PlayerControls.IPlayerActions
             Vector3 dirMov = forwardDirMov + rightDirMov;
             _playerBody.velocity = new Vector3(dirMov.x,_playerBody.velocity.y,dirMov.z);
 
-            
 
-            Camera cam = cameraPivot.GetComponentInChildren<Camera>();
-            if (Physics.Raycast(new Ray(cam.transform.position, cam.transform.forward), out RaycastHit hit))
+
+            Transform cam = cameraPivot.GetComponentInChildren<CinemachineVirtualCamera>().transform;
+            if (Physics.Raycast(new Ray(cam.position, cam.forward), out RaycastHit hit))
             {
                 Weapon.transform.LookAt(hit.point);
             }
