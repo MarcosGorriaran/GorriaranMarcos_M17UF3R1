@@ -36,11 +36,16 @@ public class TravelBullet : Proyectile
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.TryGetComponent(out Character targetHit) && !IsTargetOwner(targetHit))
+        if(other.TryGetComponent(out Character targetHit))
         {
-            OnHit(targetHit);
+            if(!IsTargetOwner(targetHit))
+                OnHit(targetHit);
             
         }
-        Despawn();
+        else
+        {
+            Despawn();
+        }
+        
     }
 }

@@ -12,6 +12,8 @@ public class PlayerCharacter : Character, PlayerControls.IPlayerActions
     const float MaxCamRotation = 89f;
     Rigidbody _playerBody;
     [SerializeField]
+    AnimatorBooleanHandler _danceBooleanHandler;
+    [SerializeField]
     [Range(0f,90f)]
     float _lookUpRange;
     [SerializeField]
@@ -29,15 +31,25 @@ public class PlayerCharacter : Character, PlayerControls.IPlayerActions
     [SerializeField]
     Transform _movementPivot;
     [SerializeField]
+    IsGrounded _groundChecker;
+    [SerializeField]
+    DanceHandler _danceHandler;
+    [SerializeField]
     CinemachineVirtualCamera _firstPersonCamera;
     [SerializeField]
     CinemachineVirtualCamera _thirdPersonCamera;
+    [SerializeField]
+    CinemachineVirtualCamera _danceCamera;
     Coroutine _moveCoroutine;
     Coroutine _shootCoroutine;
     protected override void Awake()
     {
         base.Awake();
         _playerBody = GetComponent<Rigidbody>();
+    }
+    private void OnDestroy()
+    {
+        _danceHandler.stopedDancing -= OnStopedDancing;
     }
 
     public void OnLook(InputAction.CallbackContext context)
@@ -139,7 +151,7 @@ public class PlayerCharacter : Character, PlayerControls.IPlayerActions
     {
         if(Time.timeScale != 0)
         {
-            if (context.performed)
+            if (context.performed && _groundChecker.CheckIfGrounded())
             {
                 _playerBody.velocity = new Vector3(_playerBody.velocity.x, _jumpForce, _playerBody.velocity.z);
             }
@@ -158,6 +170,21 @@ public class PlayerCharacter : Character, PlayerControls.IPlayerActions
                 CameraManager.Instance.SetActiveCamera(_thirdPersonCamera);
             }
         }
+    }
+    public void OnDance(InputAction.CallbackContext context)
+    {
+        if(Time.timeScale != 0)
+        {
+            if (context.performed)
+            {
+                _danceHandler.StartDance();
+                CameraManager.Instance.SetActiveCamera(_danceCamera);
+            }
+        }
+    }
+    public void OnStopedDancing()
+    {
+        CameraManager.Instance.SetActiveCamera(_thirdPersonCamera);
     }
     private void ExecuteChangeOnMovement(Vector2 normalizedAxis)
     {
@@ -187,6 +214,7 @@ public class PlayerCharacter : Character, PlayerControls.IPlayerActions
             _shootCoroutine = null;
         }
     }
+    
     private IEnumerator ConstantMovement(Vector2 normalizedAxis)
     {
         while (true)
