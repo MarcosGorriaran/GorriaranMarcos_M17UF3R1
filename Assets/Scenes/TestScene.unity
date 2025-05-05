@@ -1711,11 +1711,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!137 &817398982 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -8499879560893939875, guid: a4fd6db9c5f13b14c8537917b17cd922, type: 3}
-  m_PrefabInstance: {fileID: 2748412316316818034}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &828350090
 GameObject:
   m_ObjectHideFlags: 0
@@ -3676,11 +3671,6 @@ Transform:
   - {fileID: 140232978}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!137 &2014222417 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 1435635519314410850, guid: a4fd6db9c5f13b14c8537917b17cd922, type: 3}
-  m_PrefabInstance: {fileID: 2748412316316818034}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2093727648
 GameObject:
   m_ObjectHideFlags: 0
@@ -3853,14 +3843,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1187212361773323258, guid: a4fd6db9c5f13b14c8537917b17cd922, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.683
-      objectReference: {fileID: 0}
-    - target: {fileID: 2420310670173392722, guid: a4fd6db9c5f13b14c8537917b17cd922, type: 3}
-      propertyPath: m_Intensity
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 3669031884048254581, guid: a4fd6db9c5f13b14c8537917b17cd922, type: 3}
       propertyPath: _pauseMenu
       value: 
@@ -3918,8 +3900,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9155168578570319179, guid: a4fd6db9c5f13b14c8537917b17cd922, type: 3}
-      propertyPath: startDancing.m_PersistentCalls.m_Calls.Array.size
-      value: 6
+      propertyPath: _danceBooleanHandler
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 9155168578570319179, guid: a4fd6db9c5f13b14c8537917b17cd922, type: 3}
       propertyPath: endDancing.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -3930,14 +3912,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 705507994}
     - target: {fileID: 9155168578570319179, guid: a4fd6db9c5f13b14c8537917b17cd922, type: 3}
-      propertyPath: startDancing.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 9155168578570319179, guid: a4fd6db9c5f13b14c8537917b17cd922, type: 3}
-      propertyPath: startDancing.m_PersistentCalls.m_Calls.Array.data[5].m_Mode
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 9155168578570319179, guid: a4fd6db9c5f13b14c8537917b17cd922, type: 3}
       propertyPath: startDancing.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 602583901}
@@ -3945,54 +3919,6 @@ PrefabInstance:
       propertyPath: startDancing.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 705507994}
-    - target: {fileID: 9155168578570319179, guid: a4fd6db9c5f13b14c8537917b17cd922, type: 3}
-      propertyPath: startDancing.m_PersistentCalls.m_Calls.Array.data[4].m_Target
-      value: 
-      objectReference: {fileID: 817398982}
-    - target: {fileID: 9155168578570319179, guid: a4fd6db9c5f13b14c8537917b17cd922, type: 3}
-      propertyPath: startDancing.m_PersistentCalls.m_Calls.Array.data[5].m_Target
-      value: 
-      objectReference: {fileID: 2014222417}
-    - target: {fileID: 9155168578570319179, guid: a4fd6db9c5f13b14c8537917b17cd922, type: 3}
-      propertyPath: startDancing.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 9155168578570319179, guid: a4fd6db9c5f13b14c8537917b17cd922, type: 3}
-      propertyPath: startDancing.m_PersistentCalls.m_Calls.Array.data[5].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 9155168578570319179, guid: a4fd6db9c5f13b14c8537917b17cd922, type: 3}
-      propertyPath: startDancing.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
-      value: set_enabled
-      objectReference: {fileID: 0}
-    - target: {fileID: 9155168578570319179, guid: a4fd6db9c5f13b14c8537917b17cd922, type: 3}
-      propertyPath: startDancing.m_PersistentCalls.m_Calls.Array.data[5].m_MethodName
-      value: set_enabled
-      objectReference: {fileID: 0}
-    - target: {fileID: 9155168578570319179, guid: a4fd6db9c5f13b14c8537917b17cd922, type: 3}
-      propertyPath: startDancing.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
-      value: UnityEngine.Renderer, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 9155168578570319179, guid: a4fd6db9c5f13b14c8537917b17cd922, type: 3}
-      propertyPath: startDancing.m_PersistentCalls.m_Calls.Array.data[5].m_TargetAssemblyTypeName
-      value: UnityEngine.Renderer, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 9155168578570319179, guid: a4fd6db9c5f13b14c8537917b17cd922, type: 3}
-      propertyPath: startDancing.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_BoolArgument
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9155168578570319179, guid: a4fd6db9c5f13b14c8537917b17cd922, type: 3}
-      propertyPath: startDancing.m_PersistentCalls.m_Calls.Array.data[5].m_Arguments.m_BoolArgument
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9155168578570319179, guid: a4fd6db9c5f13b14c8537917b17cd922, type: 3}
-      propertyPath: startDancing.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 9155168578570319179, guid: a4fd6db9c5f13b14c8537917b17cd922, type: 3}
-      propertyPath: startDancing.m_PersistentCalls.m_Calls.Array.data[5].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
