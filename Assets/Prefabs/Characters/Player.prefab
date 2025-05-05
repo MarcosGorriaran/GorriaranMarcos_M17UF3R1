@@ -1301,6 +1301,52 @@ Transform:
   - {fileID: 6000407479487422213}
   m_Father: {fileID: 366175167995203695}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &147908536726049774
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1338417768580197401}
+  - component: {fileID: 6989483771171786535}
+  m_Layer: 6
+  m_Name: DanceAnimHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1338417768580197401
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 147908536726049774}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6869865593840002830}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6989483771171786535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 147908536726049774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32fc532c6c5f594c8c906de7ac392a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 5866666021909216657}
+  _boolParameterName: Dance
 --- !u!1 &261985195491899785
 GameObject:
   m_ObjectHideFlags: 0
@@ -1504,10 +1550,6 @@ GameObject:
   m_Component:
   - component: {fileID: -8679921383154817045}
   - component: {fileID: 5866666021909216657}
-  - component: {fileID: 2665874197574615021}
-  - component: {fileID: 6323140258390228295}
-  - component: {fileID: 7351592724769955206}
-  - component: {fileID: 5236395790235655567}
   m_Layer: 6
   m_Name: Vanguard By T. Choonyung
   m_TagString: Untagged
@@ -1554,59 +1596,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2665874197574615021
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132149155446097}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c03c9b06e2dcc249b2bda7230bd898e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _directionXParameterName: DirX
-  _directionYParameterName: DirY
---- !u!114 &6323140258390228295
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132149155446097}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c32fc532c6c5f594c8c906de7ac392a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _boolParameterName: Dance
---- !u!114 &7351592724769955206
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132149155446097}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c32fc532c6c5f594c8c906de7ac392a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _boolParameterName: Crouching
---- !u!114 &5236395790235655567
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132149155446097}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c32fc532c6c5f594c8c906de7ac392a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _boolParameterName: OnAir
 --- !u!1 &1082271958561512970
 GameObject:
   m_ObjectHideFlags: 0
@@ -1769,6 +1758,52 @@ Transform:
   - {fileID: 1564860333797465651}
   m_Father: {fileID: 6502182839619065283}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2615755859774910990
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8534412410099600013}
+  - component: {fileID: 7705055917586158361}
+  m_Layer: 6
+  m_Name: CrouchAnimHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8534412410099600013
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2615755859774910990}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6869865593840002830}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7705055917586158361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2615755859774910990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32fc532c6c5f594c8c906de7ac392a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 5866666021909216657}
+  _boolParameterName: Crouching
 --- !u!1 &2715566404302941441
 GameObject:
   m_ObjectHideFlags: 0
@@ -2310,6 +2345,10 @@ Transform:
   m_Children:
   - {fileID: 1187212361773323258}
   - {fileID: 7291594866882134957}
+  - {fileID: 1338417768580197401}
+  - {fileID: 540443597562845494}
+  - {fileID: 8534412410099600013}
+  - {fileID: 1740617727122015455}
   - {fileID: -8679921383154817045}
   - {fileID: 3002061417157706180}
   - {fileID: 9181747907237285898}
@@ -2374,10 +2413,13 @@ MonoBehaviour:
   _groupMember: 0
   _threatLevel: 0
   _charWeapon: {fileID: 4023957389361215181}
-  _animMovementHandler: {fileID: 2665874197574615021}
-  _danceBooleanHandler: {fileID: 0}
+  _animMovementHandler: {fileID: 9141876187505258932}
+  _danceBooleanHandler: {fileID: 6989483771171786535}
+  _crouchBooleanHandler: {fileID: 7705055917586158361}
+  _jumpBooleanHandler: {fileID: 3929161871824679511}
   _lookUpRange: 80
   _speed: 4
+  _crouchSpeed: 0
   _jumpForce: 10
   _pauseMenu: {fileID: 0}
   _sceneManager: {fileID: 0}
@@ -2568,7 +2610,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 524b1b0a8a14dd04e80a7dc60522cf93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _danceBooleanHandler: {fileID: 6323140258390228295}
+  _danceBooleanHandler: {fileID: 0}
   _duration: 5
   startDancing:
     m_PersistentCalls:
@@ -2982,6 +3024,52 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &5371168227591323559
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 540443597562845494}
+  - component: {fileID: 3929161871824679511}
+  m_Layer: 6
+  m_Name: JumpAnimHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &540443597562845494
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5371168227591323559}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6869865593840002830}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3929161871824679511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5371168227591323559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32fc532c6c5f594c8c906de7ac392a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 5866666021909216657}
+  _boolParameterName: OnAir
 --- !u!1 &6162274040497989121
 GameObject:
   m_ObjectHideFlags: 0
@@ -3228,6 +3316,53 @@ Transform:
   - {fileID: 6655383506977046455}
   m_Father: {fileID: 6502182839619065283}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6533811160927585048
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1740617727122015455}
+  - component: {fileID: 9141876187505258932}
+  m_Layer: 6
+  m_Name: MoveAnimHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1740617727122015455
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6533811160927585048}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6869865593840002830}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9141876187505258932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6533811160927585048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c03c9b06e2dcc249b2bda7230bd898e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 5866666021909216657}
+  _directionXParameterName: DirX
+  _directionYParameterName: DirY
 --- !u!1 &6631055753117266523
 GameObject:
   m_ObjectHideFlags: 0
