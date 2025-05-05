@@ -1506,6 +1506,8 @@ GameObject:
   - component: {fileID: 5866666021909216657}
   - component: {fileID: 2665874197574615021}
   - component: {fileID: 6323140258390228295}
+  - component: {fileID: 7351592724769955206}
+  - component: {fileID: 5236395790235655567}
   m_Layer: 6
   m_Name: Vanguard By T. Choonyung
   m_TagString: Untagged
@@ -1579,6 +1581,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _boolParameterName: Dance
+--- !u!114 &7351592724769955206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132149155446097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32fc532c6c5f594c8c906de7ac392a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _boolParameterName: Crouching
+--- !u!114 &5236395790235655567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132149155446097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32fc532c6c5f594c8c906de7ac392a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _boolParameterName: OnAir
 --- !u!1 &1082271958561512970
 GameObject:
   m_ObjectHideFlags: 0
@@ -2160,7 +2188,7 @@ Transform:
   m_GameObject: {fileID: 4119329374321394051}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.683, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2498,6 +2526,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: d6793914-0614-4148-b12b-6c98119df05d
     m_ActionName: Player/Dance[/Keyboard/g]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 00517f5b-218e-49fa-a5d7-607182ce0a11
+    m_ActionName: Player/Crouch[/Keyboard/c]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -2588,6 +2620,30 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: -8499879560893939875}
+        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1435635519314410850}
+        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
   endDancing:
     m_PersistentCalls:
@@ -2876,7 +2932,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 2
+  m_Intensity: 3
   m_Range: 10
   m_SpotAngle: 25.681831
   m_InnerSpotAngle: 20.857094

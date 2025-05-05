@@ -14,10 +14,17 @@ public class PlayerCharacter : Character, PlayerControls.IPlayerActions
     [SerializeField]
     AnimatorBooleanHandler _danceBooleanHandler;
     [SerializeField]
+    AnimatorBooleanHandler _crouchBooleanHandler;
+    [SerializeField]
+    AnimatorBooleanHandler _jumpBooleanHandler;
+    [SerializeField]
     [Range(0f,90f)]
     float _lookUpRange;
     [SerializeField]
     float _speed;
+    [SerializeField]
+    float _crouchSpeed;
+    float _currentSpeed;
     [SerializeField]
     float _jumpForce;
     [SerializeField]
@@ -47,11 +54,26 @@ public class PlayerCharacter : Character, PlayerControls.IPlayerActions
         base.Awake();
         _playerBody = GetComponent<Rigidbody>();
     }
+    private void Start()
+    {
+        EvaluateCurrentSpeed();
+    }
     private void OnDestroy()
     {
         _danceHandler.stopedDancing -= OnStopedDancing;
     }
-
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        _groundChecker.onLanded += OnLanding;
+        _groundChecker.onLiftOf += OnLiftOf;
+    }
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        _groundChecker.onLanded -= OnLanding;
+        _groundChecker.onLiftOf -= OnLiftOf;
+    }
     public void OnLook(InputAction.CallbackContext context)
     {
         if (Time.timeScale != 0)
@@ -136,7 +158,7 @@ public class PlayerCharacter : Character, PlayerControls.IPlayerActions
                 {
                     animY = -1;
                 }
-                ExecuteChangeOnMovement(movDir * _speed);
+                ExecuteChangeOnMovement(movDir);
                 AnimatorMovementHandler.ChangeAnimationDir(animX, animY);
             }
             else if (context.canceled)
@@ -182,9 +204,39 @@ public class PlayerCharacter : Character, PlayerControls.IPlayerActions
             }
         }
     }
+    public void OnCrouch(InputAction.CallbackContext context)
+    {
+        if(Time.timeScale != 0)
+        {
+            if (context.performed)
+            {
+                _crouchBooleanHandler.SwitchBool();
+                EvaluateCurrentSpeed();
+            }
+        }
+    }
     public void OnStopedDancing()
     {
         CameraManager.Instance.SetActiveCamera(_thirdPersonCamera);
+    }
+    private void OnLiftOf()
+    {
+        _jumpBooleanHandler.SwitchBool(true);
+    }
+    private void OnLanding()
+    {
+        _jumpBooleanHandler.SwitchBool(false);
+    }
+    private void EvaluateCurrentSpeed()
+    {
+        if (_crouchBooleanHandler.GetBoolState())
+        {
+            _currentSpeed = _crouchSpeed;
+        }
+        else
+        {
+            _currentSpeed = _speed;
+        }
     }
     private void ExecuteChangeOnMovement(Vector2 normalizedAxis)
     {
@@ -224,6 +276,7 @@ public class PlayerCharacter : Character, PlayerControls.IPlayerActions
             Vector3 forwardDirMov = _movementPivot.forward * forward;
             Vector3 rightDirMov = _movementPivot.right * right;
             Vector3 dirMov = forwardDirMov + rightDirMov;
+            Vector3 dirMove = dirMov * _currentSpeed;
             _playerBody.velocity = new Vector3(dirMov.x,_playerBody.velocity.y,dirMov.z);
 
 
