@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c32fc532c6c5f594c8c906de7ac392a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 1087602407}
+  _animator: {fileID: 173042412}
   _boolParameterName: Alert
 --- !u!1 &140232977
 GameObject:
@@ -1078,7 +1078,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bddf59d58fbfce47957f3cc8cd7a53a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 1087602407}
+  _animator: {fileID: 173042412}
   _propertyName: Revive
 --- !u!4 &667985475
 Transform:
@@ -1840,11 +1840,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1940371437}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &1087602407 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: a4fd6db9c5f13b14c8537917b17cd922, type: 3}
-  m_PrefabInstance: {fileID: 2748412316316818034}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1122611806 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8453233125289460197, guid: a4fd6db9c5f13b14c8537917b17cd922, type: 3}
@@ -3249,7 +3244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bddf59d58fbfce47957f3cc8cd7a53a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 1087602407}
+  _animator: {fileID: 173042412}
   _propertyName: Death
 --- !u!1 &1938655723
 GameObject:
