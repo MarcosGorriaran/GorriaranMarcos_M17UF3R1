@@ -153,6 +153,7 @@ MonoBehaviour:
   _groupMember: 1
   _threatLevel: 0
   _charWeapon: {fileID: 3433519217008185136}
+  _animMovementHandler: {fileID: 0}
   _nodes:
   - {fileID: 11400000, guid: ae2fcb9e17eee7f4b8a6baa16ab42040, type: 2}
   - {fileID: 11400000, guid: 98307dacf4751764f80767bcb32824dd, type: 2}

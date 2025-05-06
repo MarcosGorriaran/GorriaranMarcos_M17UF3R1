@@ -12,11 +12,11 @@ public class PlayerCharacter : Character, PlayerControls.IPlayerActions
     const float MaxCamRotation = 89f;
     Rigidbody _playerBody;
     [SerializeField]
-    AnimatorBooleanHandler _danceBooleanHandler;
-    [SerializeField]
     AnimatorBooleanHandler _crouchBooleanHandler;
     [SerializeField]
     AnimatorBooleanHandler _jumpBooleanHandler;
+    [SerializeField]
+    AnimatorBooleanHandler _sprintBooleanHandler;
     [SerializeField]
     [Range(0f,90f)]
     float _lookUpRange;
@@ -24,6 +24,8 @@ public class PlayerCharacter : Character, PlayerControls.IPlayerActions
     float _speed;
     [SerializeField]
     float _crouchSpeed;
+    [SerializeField]
+    float _sprintSpeed;
     float _currentSpeed;
     [SerializeField]
     float _jumpForce;
@@ -176,6 +178,8 @@ public class PlayerCharacter : Character, PlayerControls.IPlayerActions
             if (context.performed && _groundChecker.CheckIfGrounded())
             {
                 _playerBody.velocity = new Vector3(_playerBody.velocity.x, _jumpForce, _playerBody.velocity.z);
+                _crouchBooleanHandler.SwitchBool(false);
+                EvaluateCurrentSpeed();
             }
         }
     }
@@ -197,7 +201,7 @@ public class PlayerCharacter : Character, PlayerControls.IPlayerActions
     {
         if(Time.timeScale != 0)
         {
-            if (context.performed)
+            if (context.performed && _groundChecker.CheckIfGrounded())
             {
                 _danceHandler.StartDance();
                 CameraManager.Instance.SetActiveCamera(_danceCamera);
@@ -208,10 +212,26 @@ public class PlayerCharacter : Character, PlayerControls.IPlayerActions
     {
         if(Time.timeScale != 0)
         {
-            if (context.performed)
+            if (context.performed && _groundChecker.CheckIfGrounded())
             {
                 _crouchBooleanHandler.SwitchBool();
                 EvaluateCurrentSpeed();
+            }
+        }
+    }
+    public void OnSprint(InputAction.CallbackContext context)
+    {
+        if (Time.timeScale != 0)
+        {
+            if (context.performed && !_crouchBooleanHandler.GetBoolState())
+            {
+                SetSprintSpeed();
+                _sprintBooleanHandler.SwitchBool(true);
+            }
+            if (context.canceled)
+            {
+                UnSetSprintSpeed();
+                _sprintBooleanHandler.SwitchBool(false);
             }
         }
     }
@@ -237,6 +257,14 @@ public class PlayerCharacter : Character, PlayerControls.IPlayerActions
         {
             _currentSpeed = _speed;
         }
+    }
+    private void SetSprintSpeed()
+    {
+        _currentSpeed = _sprintSpeed;
+    }
+    private void UnSetSprintSpeed()
+    {
+        EvaluateCurrentSpeed();
     }
     private void ExecuteChangeOnMovement(Vector2 normalizedAxis)
     {
@@ -276,7 +304,7 @@ public class PlayerCharacter : Character, PlayerControls.IPlayerActions
             Vector3 forwardDirMov = _movementPivot.forward * forward;
             Vector3 rightDirMov = _movementPivot.right * right;
             Vector3 dirMov = forwardDirMov + rightDirMov;
-            Vector3 dirMove = dirMov * _currentSpeed;
+            dirMov = dirMov * _currentSpeed;
             _playerBody.velocity = new Vector3(dirMov.x,_playerBody.velocity.y,dirMov.z);
 
 

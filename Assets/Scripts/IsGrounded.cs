@@ -7,6 +7,8 @@ public class IsGrounded : MonoBehaviour
 {
     public event Action onLiftOf;
     public event Action onLanded;
+    [SerializeField]
+    List<Transform> _rayPositions;
     private bool _groundCheckBuffer;
     private void Start()
     {
@@ -19,6 +21,7 @@ public class IsGrounded : MonoBehaviour
         {
             InvokeEvent();
         }
+        _groundCheckBuffer = currentState;
     }
     private void InvokeEvent()
     {
@@ -33,7 +36,15 @@ public class IsGrounded : MonoBehaviour
     }
     public bool CheckIfGrounded()
     {
-        Ray ray = new Ray(transform.position, -transform.up);
-        return Physics.Raycast(ray, 0.1f);
+        foreach (Transform t in _rayPositions)
+        {
+            Ray ray = new Ray(t.position, -t.up);
+            bool result = Physics.Raycast(ray, 0.1f);
+            if (result)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
