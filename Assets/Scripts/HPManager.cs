@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class HPManager : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class HPManager : MonoBehaviour
     int maxHp;
     public delegate void OnAction();
     public delegate void OnHPChangeAction(int amountChanged);
+    public UnityEvent unityOnDeath;
+    public UnityEvent unityOnRevive;
     public event OnAction onDeath;
     public event OnAction onRevive;
     public event OnHPChangeAction onHPChange;
@@ -28,6 +31,7 @@ public class HPManager : MonoBehaviour
             if (IsDead())
             {
                 onDeath?.Invoke();
+                unityOnDeath?.Invoke();
             }
 
         }
@@ -56,6 +60,7 @@ public class HPManager : MonoBehaviour
         hp = maxHp;
         onHPChange?.Invoke(maxHp);
         onRevive?.Invoke();
+        unityOnRevive?.Invoke();
     }
     public bool IsDead() { return hp <= 0; }
     public int GetHp() { return hp; }

@@ -14,8 +14,15 @@ public class IACharacter : Character
     StateSO _defaultNode;
     [SerializeField]
     TargetFinder _targetFinder;
+    [SerializeField]
+    AnimatorBooleanHandler _animAlertHandler;
+    [SerializeField]
+    AnimationTriggerHandler _animAttackHandler;
     NavMeshAgent _agent;
+    [SerializeField]
+    float _delayedDespawnDuration;
     bool _firstTimeSpawning = true;
+    bool _stopThoughtProcess = false;
 
     public TargetFinder TargetFinder 
     { 
@@ -26,6 +33,14 @@ public class IACharacter : Character
     {
         get { return _agent; }
         private set { _agent = value; }
+    }
+    public AnimatorBooleanHandler AnimAlertHandler
+    {
+        get { return _animAlertHandler; }
+    }
+    public AnimationTriggerHandler AnimAttackHandler 
+    {
+        get{ return _animAttackHandler; }
     }
     public bool FirstTimeSpawning
     {
@@ -62,7 +77,11 @@ public class IACharacter : Character
     }
     protected virtual void Update()
     {
-        _currentNode.OnStateUpdate(this);
+        if (!_stopThoughtProcess)
+        {
+            _currentNode.OnStateUpdate(this);
+        }
+        
     }
     /**
      * <summary>
@@ -139,13 +158,45 @@ public class IACharacter : Character
         _currentNode = _defaultNode;
         _currentNode.OnStateEnter(this);
     }
+    IEnumerator DelayedDisable()
+    {
+        yield return new WaitForSeconds(_delayedDespawnDuration);
+        gameObject.SetActive(false);
+    }
+    private void DisapearCollisionBody()
+    {
+        GetComponent<Rigidbody>().useGravity = false;
+        GetComponent<Collider>().enabled = false;
+    }
+    private void ReapearCollisionBody()
+    {
+        GetComponent<Rigidbody>().useGravity = true;
+        GetComponent<Collider>().enabled = true;
+    }
+    private void StopBrain()
+    {
+        _stopThoughtProcess = true;
+        GetComponent<NavMeshObstacle>().enabled = false;
+        Agent.SetDestination(transform.position);
+    }
+    private void StartBrain()
+    {
+        _stopThoughtProcess = false;
+        GetComponent<NavMeshObstacle>().enabled = false;
+    }
     protected override void OnDeath()
     {
-        gameObject.SetActive(false);
+        base.OnDeath();
+        StopBrain();
+        DisapearCollisionBody();
+        StartCoroutine(DelayedDisable());
     }
 
     protected override void OnRevive()
     {
+        base.OnRevive();
+        StartBrain();
+        ReapearCollisionBody();
         EnterNewState(_defaultNode);
     }
 

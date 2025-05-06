@@ -331,7 +331,10 @@ public class PlayerCharacter : Character, PlayerControls.IPlayerActions
     }
     protected override void OnDeath()
     {
-        _sceneManager.LoadScene(_sceneOnDeath);
+        //_sceneManager.LoadScene(_sceneOnDeath);
+        base.OnDeath();
+        GetComponent<PlayerInput>().enabled = false;
+        CameraManager.Instance.SetActiveCamera(_danceCamera);
     }
 
     protected override void OnHPChange(int hpChange)

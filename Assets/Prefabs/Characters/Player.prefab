@@ -2207,6 +2207,7 @@ Transform:
   - {fileID: 8534412410099600013}
   - {fileID: 1740617727122015455}
   - {fileID: 567545222555213982}
+  - {fileID: 5319524846070612336}
   m_Father: {fileID: 6869865593840002830}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3798935500801656135
@@ -2817,6 +2818,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   maxHp: 100
+  unityOnDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  unityOnRevive:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &3669031884048254581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2834,6 +2841,7 @@ MonoBehaviour:
   _threatLevel: 0
   _charWeapon: {fileID: 4023957389361215181}
   _animMovementHandler: {fileID: 9141876187505258932}
+  _animDeathHandler: {fileID: 6426386550082777247}
   _crouchBooleanHandler: {fileID: 7705055917586158361}
   _jumpBooleanHandler: {fileID: 3929161871824679511}
   _sprintBooleanHandler: {fileID: 1082005466433728401}
@@ -3911,6 +3919,52 @@ Transform:
   - {fileID: 4127723732414900746}
   m_Father: {fileID: 6869865593840002830}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6380133416330607140
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5319524846070612336}
+  - component: {fileID: 6426386550082777247}
+  m_Layer: 6
+  m_Name: DeathAnimHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5319524846070612336
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6380133416330607140}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6501732458545315620}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6426386550082777247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6380133416330607140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bddf59d58fbfce47957f3cc8cd7a53a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 5866666021909216657}
+  _propertyName: Death
 --- !u!1 &6486772419319043224
 GameObject:
   m_ObjectHideFlags: 0

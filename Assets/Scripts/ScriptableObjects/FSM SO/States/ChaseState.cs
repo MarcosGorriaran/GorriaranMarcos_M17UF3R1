@@ -6,7 +6,7 @@ public class ChaseState : StateSO
 {
     public override void OnStateEnter(IACharacter ec)
     {
-        
+        ec.AnimAlertHandler.SwitchBool(true);
     }
     public override void OnStateUpdate(IACharacter ec)
     {
@@ -21,5 +21,6 @@ public class ChaseState : StateSO
     public override void OnStateExit(IACharacter ec)
     {
         ec.Agent.updateRotation = true;
+        ec.AnimAlertHandler.SwitchBool(false);
     }
 }

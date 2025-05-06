@@ -15,6 +15,10 @@ public abstract class Character : MonoBehaviour, ITargetable
     Weapon _charWeapon;
     [SerializeField]
     AnimatorMovementHandler _animMovementHandler;
+    [SerializeField]
+    AnimationTriggerHandler _animDeathHandler;
+    [SerializeField]
+    AnimationTriggerHandler _animReviveHandler;
     public Group GroupMember { get => _groupMember; set => _groupMember = value; }
     public float ThreatLevel { get => _threatLevel; set => _threatLevel = value; }
     public AnimatorMovementHandler AnimatorMovementHandler { get => _animMovementHandler; }
@@ -56,8 +60,22 @@ public abstract class Character : MonoBehaviour, ITargetable
         HitPointsManager.onRevive -= OnRevive;
         HitPointsManager.onHPChange -= OnHPChange;
     }
-    protected abstract void OnDeath();
-    protected abstract void OnRevive();
+    protected virtual void OnDeath()
+    {
+        if(_animDeathHandler != null)
+        {
+            _animDeathHandler.InvokeTrigger();
+        }
+        
+    }
+    protected virtual void OnRevive()
+    {
+        if(_animReviveHandler != null)
+        {
+            _animReviveHandler.InvokeTrigger();
+        }
+        
+    }
     protected abstract void OnHPChange(int hpChange);
 
 }

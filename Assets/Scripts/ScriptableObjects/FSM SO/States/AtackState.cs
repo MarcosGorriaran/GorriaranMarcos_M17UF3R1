@@ -20,6 +20,7 @@ public class AtackState : StateSO
             ec.IALookAt(ec.TargetFinder.FoundTarget.transform.position);
             ec.Weapon.transform.LookAt(ec.TargetFinder.FoundTarget.transform);
         }
+        ec.AnimAttackHandler.InvokeTrigger();
         ec.Weapon.Fire();
         ec.CheckEndingConditions();
     }
